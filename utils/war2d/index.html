@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>War2D Demo</title>
+        <!--link href="./favicon.ico" rel="shortcut icon"-->
+        <link rel="stylesheet" type="text/css" href="./main.css">
+        <script type="text/javascript" src="./jquery.min.js"></script>
+        <script type="text/javascript" src="./easel.min.js"></script>
+        <script type="text/javascript" src="./tween.min.js"></script>
+        <script type="text/javascript" src="./parallax.js"></script>
+        <script type="text/javascript" src="./sea.js"></script>
+        <script type="text/javascript" src="./base.js"></script>
+        <script type="text/javascript">
+            seajs.config({
+                base: "./"
+            });
+            var data = [
+                    {start:"上海",end:"西安",trend:100},
+                    {start:"北京",end:"成都",trend:80},
+                    {start:"北京",end:"郑州",trend:60},
+                    {start:"北京",end:"杭州",trend:40},
+                    {start:"北京",end:"无锡",trend:20}
+                ];
+            seajs.use(["./map"], function(view) {
+                var map = new view();
+                map.render(data, 0);
+            });
+        </script>
+    </head>
+    <body>
+        <div class="bg">
+            <div class="parallax" style="transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;">
+                <li class="layer" data-depth="0.20" style="position: relative; display: block; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden;"></li>
+            </div>
+        </div>
+        <canvas class="canvas" id="map-canvas" width="640" height="480"></canvas>
+        <canvas class="canvas" id="line-canvas" width="640" height="480"></canvas>
+        <canvas class="canvas" id="animation-canvas" width="640" height="480"></canvas>
+    </body>
+</html>

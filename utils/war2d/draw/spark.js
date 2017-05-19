@@ -46,7 +46,7 @@ define(function(require) {
             override: true //当再次调用play方法时覆盖上次的
         }).to({
             angle: (this.start > this.end && this.end < 0) ? (2 * Math.PI + this.end) : this.end
-        }, this.circleLineData.l >= 50 ? (this.circleLineData.l / this.speed) : (this.circleLineData.l / this.slowSpeed), createjs.Ease.linear);
+        }, this.circleLineData.length >= 50 ? (this.circleLineData.length / this.speed) : (this.circleLineData.length / this.slowSpeed), createjs.Ease.linear);
     }
 
     p.paint = function(ctx) {
@@ -67,7 +67,7 @@ define(function(require) {
             var end = start + this.arcFrag;
             drawArc(ctx, this.center.x, this.center.y, this.radius, start, end, sparkWidth, false, color);
             color = sparkColorRgba + 0.35 / (i + 10) + ')';
-            drawArc(ctx, this.center.x, this.center.y, this.radius, start, end, this.circleLineData.l >= 50 ? 26 : 10, false, color);
+            drawArc(ctx, this.center.x, this.center.y, this.radius, start, end, this.circleLineData.length >= 50 ? 26 : 10, false, color);
         }
     };
 

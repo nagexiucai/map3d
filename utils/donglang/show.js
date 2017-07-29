@@ -87,7 +87,7 @@ img.onload = function () {
 var view = {
     "initialize": function () {
         img.scaleh = 1800;
-        img.scalew = 1.5;
+        img.scalew = 1.125;
         img.skin = donglang.satellitembmk;
         img.src = donglang.terrainmz;
     },

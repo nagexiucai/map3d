@@ -63,7 +63,7 @@
             var data = getHeightData(img);
             // prepare environment
             var renderer = new THREE.WebGLRenderer();
-            renderer.setSize(img.width*img.scalew, img.height*img.scalew); // TODO: to be reactive
+            renderer.setSize(img.width*img.scalex, img.height*img.scaley); // TODO: to be reactive
             square.appendChild(renderer.domElement);
             var scene = new THREE.Scene();
             var camera = new THREE.PerspectiveCamera(75,1,0.1,1000);
@@ -108,7 +108,7 @@
                 // maximum=1826.519531 minimum=899.460938 difference=927.058593 -- huashan-14-13202-6518
                 // maximum=2305.972656 minimum=324.000000 difference=1981.972656 -- huashan-10-825-407
                 for (var i=0;i<plane.geometry.vertices.length;i++) {
-                    plane.geometry.vertices[i].z = (data[i]-img.base)/img.scaleh;
+                    plane.geometry.vertices[i].z = (data[i]-img.base)/img.scalez;
                 }
             }
             // grads();
@@ -135,15 +135,17 @@
         };
         var whole = function () {
             img.base = 1981.972656;
-            img.scaleh = 1000;
-            img.scalew = 2;
+            img.scalez = 1000;
+            img.scalex = 2;
+            img.scaley = 2;
             img.skin = "./data/huashan-texture-10-825-407.jpg";
             img.src = "./data/huashan-10-825-407.png";
         }
         var part = function () {
             img.base = 899.460938;
-            img.scaleh = 100;
-            img.scalew = 2;
+            img.scalez = 100;
+            img.scalex = 2;
+            img.scaley = 2;
             img.skin = "./data/huashan-texture-14-13202-6518.jpg";
             img.src = "./data/huashan-14-13202-6518.png";
         }

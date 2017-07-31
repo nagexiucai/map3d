@@ -42,11 +42,11 @@ img.onload = function () {
     var data = getHeightData(img);
 
     var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(img.width*img.scalew, img.height*img.scalew);
+    renderer.setSize(img.width*img.scalex, img.height*img.scaley);
     square.appendChild(renderer.domElement);
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75,1,0.1,1000);
-    camera.position.set(0,0,15);
+    camera.position.set(0,0,img.vh);
     camera.lookAt(scene.position);
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -67,7 +67,7 @@ img.onload = function () {
 
     var scale = function () {
         for (var i=0;i<plane.geometry.vertices.length;i++) {
-            plane.geometry.vertices[i].z = (data[i]-img.base)/img.scaleh;
+            plane.geometry.vertices[i].z = (data[i]-img.base)/img.scalez;
         }
     }
 
@@ -85,20 +85,38 @@ img.onload = function () {
 };
 
 var view = {
+    "dataset": undefined,
     "initialize": function () {
-        img.scaleh = 1800;
-        img.scalew = 1.125;
-        img.skin = donglang.satellitembmk;
-        img.src = donglang.terrainmz;
+        this.dataset = donglang;
+        img.scalez = 1800;
+        img.scalex = 1.125;
+        img.scaley = 1.125;
+        img.vh = 15;
+        img.zoomed = this.dataset.scale;
+        img.skin = this.dataset.satellitembmk;
+        img.src = this.dataset.terrainmz;
     },
     "change": function () {
-        if (img.skin == donglang.satellitembmk) {
-            img.skin = donglang.streetsmbmk;
+        if (img.skin == this.dataset.satellitembmk) {
+            img.skin = this.dataset.streetsmbmk;
         }
         else {
-            img.skin = donglang.satellitembmk;
+            img.skin = this.dataset.satellitembmk;
         }
-        img.src = donglang.terrainmz;
+        img.src = this.dataset.terrainmz;
+    },
+    "zoomed": function () {
+        if (this.dataset == donglang) {
+            this.dataset = donglang.meadow;
+            img.scalez = 100;
+            img.vh = 20;
+        }
+        else {
+            this.dataset = donglang;
+            img.scalez = 1800;
+            img.vh = 15;
+        }
+        this.change();
     }
 }
 

@@ -19,6 +19,15 @@ donglang = {
     "terrainmz": "./donglang-meadow-terrain-9-382-215.png"
 };
 
+donglang.meadow = {
+    "scale": 14,
+    "streetsmb": "./donglang-meadow-streets-14-12240-6900.png",
+    "streetsmbmk": "./donglang-meadow-streets-14-12240-6900-mark.png",
+    "satellitemb": "./donglang-meadow-satellite-14-12240-6900.jpg",
+    "satellitembmk": "./donglang-meadow-satellite-14-12240-6900-mark.jpg",
+    "terrainmz": "./donglang-meadow-terrain-14-12240-6900.png"
+};
+
 // 并没有找到此次冲突具体地点及区域的权威坐标数据，暂假设在以百度地图定位的洞朗草场坐标为中心的地带。
 conflict = donglang.meadowbd;
 
@@ -37,7 +46,7 @@ international = {
             "japan": ["ryukyu", "liancourt", "kuril"],
             "israel": ["palestine"],
             "france": [],
-            "russia": ["crimea", "syria"]
+            "russia": ["crimea", "syria", "ukraine"]
         }
     },
     "in": {
@@ -87,8 +96,7 @@ dictionary = {
     "thailand": "泰国", "cambodia": "柬埔寨", "laos": "老挝",
     "skorea": "韩国", "nkorea": "朝鲜",
     "britain": "英国",
-    "syria": "叙利亚",
-    "crimea": "克里米亚",
+    "ukraine": "乌克兰", "crimea": "克里米亚", "syria": "叙利亚", 
     "palestine": "巴勒斯坦",
     "ryukyu": "琉球",
     "liancourt": "竹独",

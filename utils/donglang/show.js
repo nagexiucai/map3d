@@ -120,4 +120,19 @@ var view = {
     }
 }
 
-view.initialize()
+view.initialize();
+
+require.config({
+    paths: {
+        echarts: "."
+    }
+});
+
+require([
+    "echarts",
+    "echarts/chart/radar"
+],
+function(echarts){
+    var es = echarts.init(document.getElementById("contrast"));
+    es.setOption(option);
+});

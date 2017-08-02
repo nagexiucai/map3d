@@ -31,14 +31,20 @@ donglang.meadow = {
 // 并没有找到此次冲突具体地点及区域的权威坐标数据，暂假设在以百度地图定位的洞朗草场坐标为中心的地带。
 conflict = donglang.meadowbd;
 
+// 经济能力。
+economy = {
+    "cn": {},
+    "in": {}
+};
+
 // 军事部署。
 military = {
     "cn": {},
     "in": {}
 };
 
-// 国际环境。
-international = {
+// 外交环境。
+diplomacy = {
     "cn": {
         "support": ["pakistan"],
         "ace": {

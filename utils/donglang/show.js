@@ -130,9 +130,20 @@ require.config({
 
 require([
     "echarts",
-    "echarts/chart/radar"
+    "echarts/chart/radar",
+    "echarts/chart/bar",
+    "echarts/chart/line",
+    "echarts/chart/map"
 ],
 function(echarts){
-    var es = echarts.init(document.getElementById("contrast"));
-    es.setOption(option);
+    var eEconomy = echarts.init(document.getElementById("economy"));
+    eEconomy.setOption(optionEconomy);
+    var eMilitary = echarts.init(document.getElementById("military"));
+    eMilitary.setOption(optionMilitary);
+    var eDiplomacy = echarts.init(document.getElementById("diplomacy"));
+    eDiplomacy.setOption(optionDiplomacy);
+    var eEquipment = echarts.init(document.getElementById("equipment"));
+    eEquipment.setOption(optionEquipment);
+    var eMap = echarts.init(document.getElementById("map"));
+    eMap.setOption(optionMap);
 });

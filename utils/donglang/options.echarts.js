@@ -186,10 +186,7 @@ optionEquipment = {
     legend: {
         data: ['中方', '印方']
     },
-    toolbox: {
-        show: true,
-        feature: _toolboxConfiguration
-    },
+    toolbox: _toolboxConfiguration,
     calculable: true,
     xAxis: [{
         type: 'category',
@@ -212,11 +209,17 @@ optionEquipment = {
     }]
 };
 
-optionMap = {
+optionMapCN = {
+    title : {
+        text : '中国争议辖省',
+        subtext: 'data from wikipedia',
+        sublink: ''
+    },
     tooltip: {
         trigger: 'item',
         formatter: '{b}'
     },
+    toolbox: _toolboxConfiguration,
     series: [{
         name: '中国',
         type: 'map',
@@ -243,4 +246,67 @@ optionMap = {
             selected: true
         }]
     }]
+};
+
+optionMapIN = {
+    // 自定义扩展图表类型：mapType = india
+    title : {
+        text : '印度争议属邦',
+        subtext: 'data from wikipedia',
+        sublink: ''
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: '{b}<br/>{c}'
+    },
+    toolbox: {
+        show : true,
+        // orient : 'vertical', // 工具栏垂直、水平靠右、垂直居中
+        // x: 'right',
+        // y: 'center',
+        feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    dataRange: {
+        min: 0,
+        max: 100,
+        text:['High','Low'],
+        realtime: false,
+        calculable : true,
+        color: ['orangered','yellow','lightskyblue']
+    },
+    series : [
+        {
+            name: '印度',
+            type: 'map',
+            mapType: 'india', // 自定义扩展图表类型
+            selectedMode: 'multiple',
+            itemStyle:{
+                normal:{label:{show:true}},
+                emphasis:{label:{show:true}}
+            },
+            data:[
+                {name: '阿鲁纳恰尔邦（印中争议）', value: 50},
+                {name: '查谟和喀什米尔（印巴争议）', value: 90},
+                {name: '锡金邦（侵略所得）', value: 60}
+            ],
+            // 自定义名称映射
+            nameMap: {
+                'Arunachal Pradesh':'阿鲁纳恰尔邦（印中争议）',
+                'Jammu and Kashmir':'查谟和喀什米尔（印巴争议）',
+                'Sikkim':'锡金邦（侵略所得）'
+            },
+            // 文本位置修正
+            textFixed : {
+                'Sikkim' : [0, -15]
+            },
+            // 文本经纬定位
+            geoCoord : {
+            }
+        }
+    ]
 };

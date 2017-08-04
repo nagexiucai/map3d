@@ -136,6 +136,11 @@ require([
     "echarts/chart/map"
 ],
 function(echarts){
+    require('echarts/util/mapData/params').params.india = {
+    getGeoJson: function (callback) {
+        $.getJSON('india.json',callback);
+    }
+    };
     var eEconomy = echarts.init(document.getElementById("economy"));
     eEconomy.setOption(optionEconomy);
     var eMilitary = echarts.init(document.getElementById("military"));
@@ -144,6 +149,8 @@ function(echarts){
     eDiplomacy.setOption(optionDiplomacy);
     var eEquipment = echarts.init(document.getElementById("equipment"));
     eEquipment.setOption(optionEquipment);
-    var eMap = echarts.init(document.getElementById("map"));
-    eMap.setOption(optionMap);
+    var eMapCN = echarts.init(document.getElementById("mapcn"));
+    eMapCN.setOption(optionMapCN);
+    var eMapIN = echarts.init(document.getElementById("mapin"));
+    eMapIN.setOption(optionMapIN);
 });

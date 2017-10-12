@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Threejs制作3D螺旋线</title>
+<style>
+body{background:#333;padding-top:50px;color:#fff}
+</style>
+ <script src="./three.min.js"></script>
+</head>
+<body>
+<div style="margin:50px">
+螺旋线（越高级的浏览器效果越好）
+</div>
+<script>
+function Spiral3D(){
+	this.width = 1000;
+	this.height = 400;
+	this.camera = new THREE.PerspectiveCamera( 33, this.width / this.height, 1, 10000);
+	this.scene = new THREE.Scene();
+	this.renderer = null;
+}
+Spiral3D.prototype = {
+	init : function() {
+		try{
+			this.renderer = new THREE.WebGLRenderer( { antialias: true } ); //webgl
+		}catch(e){
+			this.renderer = new THREE.CanvasRenderer(); //canvas
+		}
+		this.renderer.setSize( this.width, this.height);
+		document.body.appendChild( this.renderer.domElement );
+		var points = [{x:0,y:0,z:0},
+					{x:90,y:90,z:120},
+					{x:20,y:60,z:300}];
+		var spline = new THREE.Spline( points ),  //以关键点创建曲线
+			geometry = new THREE.Geometry(),
+			material = new THREE.LineBasicMaterial( { color: 0xffffff, opacity: 1, linewidth: 1, vertexColors: THREE.VertexColors } );
+		//自动补全曲线点
+		for ( var i =0, position, l = points.length * 7; i < l; i ++ ) {
+			position = spline.getPoint( i/l );
+			geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+			geometry.colors[ i ] = new THREE.Color( 0x00ffff );
+			geometry.colors[ i ].setHSV( ( 100 + position.x ) / 400 * i/8, ( 200 + position.x ) / 400, ( 250 + position.x ) / 300);
+		}
+		//创建100条线
+		for(var line, i=0, l = 100 ; i<l; i++){
+			line = new THREE.Line(geometry,  material);
+			line.position = {x: 0, y: 0, z: 0};
+			if(i > 0) {
+				line.rotation.y = Math.PI * 2 * (i/l);
+			}
+			this.scene.add( line ); //将显示对象加入场景
+		}
+		return this;
+	},
+	render : function() {
+		var timer = Date.now() * 0.0005;
+		this.camera.position.x = Math.cos( timer ) * 500;
+		this.camera.position.z = Math.sin( timer ) * 500;
+		this.camera.lookAt( this.scene.position );
+		this.renderer.render( this.scene, this.camera ); //使用渲染器
+		return this;
+	},
+	_loop : null,
+	animate : function() {
+		var that = this;
+		this._loop = function(){
+			requestAnimationFrame( that._loop );
+			that.render();
+		}
+		this._loop();
+		return this;
+	}
+}
+var demo = new Spiral3D();
+demo.init().animate();
+</script>
+</body>
+</html>
